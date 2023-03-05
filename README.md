@@ -5,7 +5,7 @@
 v16.15.1
 ```
 
-## Vue Version
+## Vue version
 ```
 v2.6.14
 ```
