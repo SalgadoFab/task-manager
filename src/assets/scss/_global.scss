@@ -1,20 +1,45 @@
-#app {
-    font-family: Avenir, Helvetica, Arial, sans-serif;
-    -webkit-font-smoothing: antialiased;
-    -moz-osx-font-smoothing: grayscale;
-    text-align: center;
+
+@import url('https://fonts.googleapis.com/css2?family=Roboto:ital,wght@0,100;0,300;0,400;0,500;1,700&display=swap');
+
+html, body {
+    font-family: 'Roboto', sans-serif;
     color: #2c3e50;
+    background-color: #eef2f5;
 }
 
-nav {
-    padding: 30px;
-
-    a {
-        font-weight: bold;
-        color: #2c3e50;
-
-        &.router-link-exact-active {
-            color: #42b983;
-        }
+#app {
+    -webkit-font-smoothing: antialiased;
+    -moz-osx-font-smoothing: grayscale;
+    text-align: center;   
+    .main-app-container {
+        margin-left: 54px;
     }
+}
+
+.padding-app {
+    padding: 3rem 3rem 2rem 3rem;
+}
+
+*,
+*::before,
+*::after {
+  -webkit-box-sizing: border-box;
+  box-sizing: border-box;
+}
+
+::-webkit-scrollbar-track {
+    background-color: rgb(23, 201, 100)!important;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.3);
+            box-shadow: inset 0 0 5px rgba(0,0,0,.3);
+}
+::-webkit-scrollbar {
+    width: 10px !important;
+    background-color: rgb(23, 201, 100)!important;
+    -webkit-box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+            box-shadow: inset 0 0 5px rgba(0,0,0,.2);
+}
+::-webkit-scrollbar-thumb {
+    background: rgb(7, 124, 58);
+    -webkit-box-shadow: inset 3px 0 15px rgba(0,0,0,.3);
+            box-shadow: inset 3px 0 15px rgba(0,0,0,.3);
 }
