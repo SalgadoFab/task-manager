@@ -1,4 +1,8 @@
 .heading-container {
+    position: fixed;
+    background: #fff;
+    width: 100%;
+    z-index: 10000;
     .header-wrapper {
         display: flex;
         flex-direction: row;
