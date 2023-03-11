@@ -8,7 +8,7 @@
             </div>
 
             <vs-sidebar-group open title="Inicio">
-                <vs-sidebar-item index="1" icon="menu">
+                <vs-sidebar-item to="/" index="1" icon="menu">
                     Dashboard
                 </vs-sidebar-item>
             </vs-sidebar-group>
@@ -18,11 +18,11 @@
             </vs-divider>
 
             <vs-sidebar-group open title="Tareas">
-                <vs-sidebar-item index="2" icon="add_task">
-                    Crear
-                </vs-sidebar-item>
-                <vs-sidebar-item index="3" icon="list">
+                <vs-sidebar-item to="/tasks" index="2" icon="list">
                     Listar
+                </vs-sidebar-item>
+                <vs-sidebar-item to="/tasks/create" index="3" icon="add_task">
+                    Crear
                 </vs-sidebar-item>
             </vs-sidebar-group>
 
@@ -30,7 +30,7 @@
                 User
             </vs-divider>
 
-            <vs-sidebar-item index="6" icon="account_box">
+            <vs-sidebar-item to="/notifications" index="4" icon="account_box">
                 Notificaciones
             </vs-sidebar-item>
 
