@@ -7,47 +7,33 @@
                 <vs-avatar size="100px" :src="localSrc" />
             </div>
 
-            <vs-sidebar-group open title="Application">
-                <vs-sidebar-item index="1" icon="menu" @click="reduce = !reduce">
-                    Toggle Sidebar
-                </vs-sidebar-item>
-                <vs-sidebar-item index="5" icon="verified_user">
-                    Configurations
-                </vs-sidebar-item>
-                <vs-sidebar-group title="Store">
-                    <vs-sidebar-item index="2.1" icon="store">
-                        Store
-                    </vs-sidebar-item>
-                    <vs-sidebar-item index="2.2" icon="nature_people">
-                        Nature
-                    </vs-sidebar-item>
-                    <vs-sidebar-item index="2.3" icon="style">
-                        Style
-                    </vs-sidebar-item>
-                </vs-sidebar-group>
-                <vs-sidebar-item index="2" icon="gavel">
-                    History
-                </vs-sidebar-item>
-                <vs-sidebar-item index="3" icon="https">
-                    Security
-                </vs-sidebar-item>
-                <vs-sidebar-item index="4" icon="help">
-                    Help
+            <vs-sidebar-group open title="Inicio">
+                <vs-sidebar-item index="1" icon="menu">
+                    Dashboard
                 </vs-sidebar-item>
             </vs-sidebar-group>
 
-            <vs-divider icon="person" position="left">
+            <vs-divider icon="create_new_folder" color="success"  position="center">
                 User
             </vs-divider>
 
+            <vs-sidebar-group open title="Tareas">
+                <vs-sidebar-item index="2" icon="add_task">
+                    Crear
+                </vs-sidebar-item>
+                <vs-sidebar-item index="3" icon="list">
+                    Listar
+                </vs-sidebar-item>
+            </vs-sidebar-group>
+
+            <vs-divider icon="notifications_none" color="success"  position="center">
+                User
+            </vs-divider>
 
             <vs-sidebar-item index="6" icon="account_box">
-                Profile
+                Notificaciones
             </vs-sidebar-item>
 
-            <div class="footer-sidebar" slot="footer">
-                <vs-button icon="settings" color="primary" type="border"></vs-button>
-            </div>
         </vs-sidebar>
     </div>
 </template>
