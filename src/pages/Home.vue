@@ -1,5 +1,5 @@
 <template>
-  <div class="home">
+  <div class="home-container padding-app">
     <img alt="Vue logo" src="../assets/imgs/logo.png">
   </div>
 </template>
