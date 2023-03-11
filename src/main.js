@@ -3,8 +3,11 @@ import Vuesax from 'vuesax';
 import router from './router';
 import App from './App.vue';
 
-import './assets/scss/app.scss'
+
 import 'vuesax/dist/vuesax.css'; 
+import 'material-icons/iconfont/material-icons.css';
+import './assets/scss/app.scss'
+
 
 Vue.use(Vuesax);
 
