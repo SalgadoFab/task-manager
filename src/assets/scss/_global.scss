@@ -13,11 +13,12 @@ html, body {
     text-align: center;   
     .main-app-container {
         margin-left: 54px;
+        min-height: 100vh;
     }
 }
 
 .padding-app {
-    padding: 3rem 3rem 2rem 3rem;
+    padding: 8rem 3rem 5rem 3rem;
 }
 
 *,

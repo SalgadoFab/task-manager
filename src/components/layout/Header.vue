@@ -5,7 +5,7 @@
         <h1>
           {{ title }}
           <br />
-          <span> by Fabricio Salgado Ulloa </span>
+          <span> by {{developer}} </span>
         </h1>
       </div>
 
@@ -46,7 +46,7 @@ export default {
     return {
       title: process.env.VUE_APP_TITLE,
       description: process.env.VUE_APP_DESCRIPTION,
-      author: process.env.VUE_APP_AUTHOR,
+      developer: process.env.VUE_APP_DEVELOPER,
       github: process.env.VUE_APP_GITHUB,
       linkedin: process.env.VUE_APP_LINKEDIN,
       insta: process.env.VUE_APP_INSTA,
