@@ -1,6 +1,6 @@
 <template>
     <div id="parentx">
-        <vs-sidebar :reduce="reduce" hidden-background="true" parent="body" default-index="1" color="success"
+        <vs-sidebar :reduce="reduce" :hidden-background="hidde_background" parent="body" default-index="1" color="success"
             class="sidebarx" spacer v-model="active">
 
             <div class="header-sidebar" slot="header">
@@ -44,6 +44,7 @@ export default {
     data: () => ({
         active: true,
         reduce: true,
+        hidde_background: true,
         localSrc: require('../../assets/imgs/cenfotec-logo.png')
     })
 }
