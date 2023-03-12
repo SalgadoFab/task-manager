@@ -1,5 +1,5 @@
 <template>
-  <section class="heading-container">
+  <section class="heading-container" v-if="showHeader" >
     <div class="header-wrapper">
       <div class="title-container">
         <h1>
@@ -50,7 +50,13 @@ export default {
       github: process.env.VUE_APP_GITHUB,
       linkedin: process.env.VUE_APP_LINKEDIN,
       insta: process.env.VUE_APP_INSTA,
+      showHeader: true,
     };
+  },
+  watch: {
+    $route(to) {
+      this.showHeader = to.path !== '/login';
+    },
   },
 };
 </script>

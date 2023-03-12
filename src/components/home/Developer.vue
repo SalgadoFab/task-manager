@@ -27,7 +27,7 @@
                 <vs-avatar size="120px" :src="localSrc" />
                 <span
                   >Estudiante de Ingeniera de Software de la Universidad
-                  Cenfotec y desarollador para la empresa
+                  Cenfotec y desarrollador para la empresa
                   <strong
                     ><a href="https://5e.cr/" target="_blank">5e.cr</a></strong
                   ></span

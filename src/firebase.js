@@ -1,6 +1,7 @@
-import * as firebase from 'firebase/app'
+import firebase from 'firebase/compat/app';
+import 'firebase/compat/auth';
+import 'firebase/compat/firestore';
 
-// firebase init
 const firebaseConfig = {
     apiKey: process.env.VUE_APP_FIREBASE_API_KEY,
     authDomain: process.env.VUE_APP_FIREBASE_AUTH_DOMAIN,
@@ -12,3 +13,14 @@ const firebaseConfig = {
 }
 
 firebase.initializeApp(firebaseConfig)
+
+// utils
+const db = firebase.firestore()
+const auth = firebase.auth()
+
+// collection references
+const usersCollection = db.collection('users')
+
+// export utils/refs
+export { db, auth, usersCollection}
+export default firebase
