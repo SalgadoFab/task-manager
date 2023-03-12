@@ -37,7 +37,7 @@
         </div>
       </div>
 
-      <form class="sign-up" action="#">
+      <form class="sign-up" @submit.prevent>
         <h2>Sign Up</h2>
         <div>Crea una cuenta usando tus datos para continuar</div>
         <div class="inputs-wrapper">
@@ -70,9 +70,9 @@
             v-model="signupForm.password"
           />
         </div>
-        <vs-button 
-          color="primary" 
-          type="gradient" 
+        <vs-button
+          color="primary"
+          type="gradient"
           icon="create"
           @click="signup()"
           >Crear cuenta
@@ -106,7 +106,9 @@
   </section>
 </template>
   
-  <script lang="ts">
+<script>
+import store from '@/store'
+
 export default {
   name: "Loginpage",
   data: () => {
@@ -118,8 +120,13 @@ export default {
   },
   methods: {
     signup() {
-      
+      store.dispatch("signup", {
+        email: this.signupForm.email,
+        password: this.signupForm.password,
+        name: this.signupForm.name,
+        id: this.signupForm.id,
+      });
     },
-  }
+  },
 };
 </script>

@@ -4,7 +4,6 @@ import * as fb from '../firebase'
 
 Vue.use(Vuex)
 
-// export default new Vuex.Store({
 const store = new Vuex.Store({
   // Acciones de interracion con base de datos
   actions: {
