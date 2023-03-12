@@ -1,6 +1,6 @@
 <template>
   <div id="app">
-    <HeaderComponent />
+    <HeaderComponent v-if="showHeader" />
     <main class="main-app-container">
       <router-view />
     </main>
@@ -8,15 +8,16 @@
 </template>
 
 <script>
-
-import HeaderComponent from './components/layout/Header.vue';
-import FooterComponent from './components/layout/Footer.vue';
-
 export default {
-  name: 'App',
-  components: {
-    HeaderComponent,
-    FooterComponent
-  }
-}
+  data() {
+    return {
+      showHeader: true,
+    };
+  },
+  watch: {
+    $route(to) {
+      this.showHeader = to.path !== '/login';
+    },
+  },
+};
 </script>
