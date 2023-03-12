@@ -50,7 +50,7 @@ export default {
       github: process.env.VUE_APP_GITHUB,
       linkedin: process.env.VUE_APP_LINKEDIN,
       insta: process.env.VUE_APP_INSTA,
-      showHeader: false,
+      showHeader: true,
     };
   },
   watch: {
