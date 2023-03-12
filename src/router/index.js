@@ -1,6 +1,7 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import HomePage from '../pages/home/Index.vue'
+import { auth } from '../firebase'
 
 Vue.use(VueRouter)
 
@@ -19,17 +20,20 @@ const routes = [
   {
     path: '/tasks',
     name: 'Tasks',
-    component: () => import('../pages/tasks/Index.vue')
+    component: () => import('../pages/tasks/Index.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/tasks/create',
     name: 'Create task',
-    component: () => import('../pages/tasks/Create.vue')
+    component: () => import('../pages/tasks/Create.vue'),
+    meta: { requiresAuth: true }
   },
   {
     path: '/notifications',
     name: 'Notificactions',
-    component: () => import('../pages/notifications/Index.vue')
+    component: () => import('../pages/notifications/Index.vue'),
+    meta: { requiresAuth: true }
   }
 ]
 
@@ -37,11 +41,10 @@ const router = new VueRouter({
   routes
 })
 
-// navigation guard to check for logged in users
 router.beforeEach((to, from, next) => {
   const requiresAuth = to.matched.some(x => x.meta.requiresAuth)
 
-  if (requiresAuth) {
+  if (requiresAuth && !auth.currentUser) {
     next('/login')
   } else {
     next()
@@ -49,3 +52,4 @@ router.beforeEach((to, from, next) => {
 })
 
 export default router
+
