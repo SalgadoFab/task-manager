@@ -70,7 +70,11 @@
             v-model="signupForm.password"
           />
         </div>
-        <vs-button color="primary" type="gradient" icon="create"
+        <vs-button 
+          color="primary" 
+          type="gradient" 
+          icon="create"
+          @click="signup()"
           >Crear cuenta
         </vs-button>
       </form>
@@ -112,5 +116,10 @@ export default {
       signUp: false,
     };
   },
+  methods: {
+    signup() {
+      
+    },
+  }
 };
 </script>
