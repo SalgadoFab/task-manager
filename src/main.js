@@ -1,6 +1,7 @@
 import Vue from 'vue';
 import Vuesax from 'vuesax';
 import router from './router';
+import store from './store'
 import App from './App.vue';
 import * as firebase from 'firebase/app'
 
@@ -26,5 +27,6 @@ Vue.config.productionTip = false;
 
 new Vue({
   router,
+  store,
   render: (h) => h(App),
 }).$mount('#app');
