@@ -40,6 +40,11 @@ const store = new Vuex.Store({
       // Inicio del flujo para logear el usuario
       dispatch('fetchCurrentUser', user)
     },
+    async signin({ dispatch }, form) {
+      // obtiene la info del usuario logeado para crear su estado
+      const { user } = await fb.auth.signInWithEmailAndPassword(form.email, form.password)
+      dispatch('fetchCurrentUser', user)
+    },
     async logout({ commit }) {
       // Realiza el logout, limpia el estado del usuarioy redirecciona al login
       await fb.auth.signOut()

@@ -98,7 +98,11 @@
             v-model="signinForm.password"
           />
         </div>
-        <vs-button color="primary" type="gradient" icon="login"
+        <vs-button 
+          color="primary" 
+          type="gradient" 
+          icon="login"
+          @click="signin()"
           >Iniciar sesion
         </vs-button>
       </form>
@@ -125,6 +129,12 @@ export default {
         password: this.signupForm.password,
         name: this.signupForm.name,
         id: this.signupForm.id,
+      });
+    },
+    signin() {
+      store.dispatch("signin", {
+        email: this.signinForm.email,
+        password: this.signinForm.password
       });
     },
   },
