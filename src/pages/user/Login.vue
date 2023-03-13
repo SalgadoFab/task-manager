@@ -1,5 +1,5 @@
 <template>
-  <section class="login-container padding-app">
+  <section class="login-container padding-app page-container">
     <div class="login-wrapper" :class="{ 'sign-up-active': signUp }">
       <div class="overlay-container">
         <div class="overlay">

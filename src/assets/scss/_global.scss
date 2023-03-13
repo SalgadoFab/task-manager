@@ -14,6 +14,11 @@ html, body {
     .main-app-container {
         margin-left: 54px;
         min-height: 100vh;
+        overflow: hidden;
+        .page-container {
+            overflow: auto;
+            height: 100vh;
+        }
     }
 }
 

@@ -1,5 +1,5 @@
 <template>
-  <div class="home-container padding-app">
+  <div class="home-container padding-app page-container">
     <div class="wrapper-info">
       <div class="content">
         <vs-tabs  :color="colorx" alignment="center">
