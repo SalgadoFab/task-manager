@@ -29,17 +29,13 @@
         ></path>
       </svg>
     </div>
-
-    <SidebarComponent />
   </section>
 </template>
 <script>
-import SidebarComponent from "./Sidebar.vue";
 import SocialMediaComponent from "./SocialMedia.vue";
 export default {
   name: "HeaderComponent",
   components: {
-    SidebarComponent,
     SocialMediaComponent
   },
   data() {

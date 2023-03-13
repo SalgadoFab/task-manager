@@ -1,5 +1,5 @@
 <template>
-  <section class="login-container padding-app">
+  <section class="login-container padding-app page-container">
     <div class="login-wrapper" :class="{ 'sign-up-active': signUp }">
       <div class="overlay-container">
         <div class="overlay">
@@ -98,7 +98,11 @@
             v-model="signinForm.password"
           />
         </div>
-        <vs-button color="primary" type="gradient" icon="login"
+        <vs-button 
+          color="primary" 
+          type="gradient" 
+          icon="login"
+          @click="signin()"
           >Iniciar sesion
         </vs-button>
       </form>
@@ -107,7 +111,7 @@
 </template>
   
 <script>
-import store from "@/store";
+import userStore from "@/stores/userStore";
 
 export default {
   name: "Loginpage",
@@ -120,11 +124,17 @@ export default {
   },
   methods: {
     signup() {
-      store.dispatch("signup", {
+      userStore.dispatch("signup", {
         email: this.signupForm.email,
         password: this.signupForm.password,
         name: this.signupForm.name,
         id: this.signupForm.id,
+      });
+    },
+    signin() {
+      userStore.dispatch("signin", {
+        email: this.signinForm.email,
+        password: this.signinForm.password
       });
     },
   },
