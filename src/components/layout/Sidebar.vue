@@ -1,9 +1,9 @@
 <template>
-  <div id="parentx">
+  <section class="sidebar-container" v-if="showSidebar" >
     <vs-sidebar
       :reduce="reduce"
       :hidden-background="hidde_background"
-      parent="body"
+      parent=".sidebar-container"
       default-index="1"
       color="success"
       class="sidebarx"
@@ -51,7 +51,7 @@
         </vs-button>
       </div>
     </vs-sidebar>
-  </div>
+  </section>
 </template>
 
 <script>
@@ -60,6 +60,7 @@ import userStore from "@/stores/userStore";
 export default {
   name: "SidebarComponent",
   data: () => ({
+    showSidebar: true,
     active: true,
     reduce: true,
     hidde_background: true,
@@ -73,8 +74,8 @@ export default {
         color: this.colorAlert,
         title: `Cerrar sesión`,
         text: "Estas apunto de cerra sesión, seguro que deseas continuar?",
-        accept: this.confirmLogout,
-        accept_text: "Continuar",
+        acceptText:'Confirmar',
+        accept: this.confirmLogout
       });
     },
     confirmLogout() {
@@ -84,6 +85,11 @@ export default {
         title: "Sesión cerrada con exito",
         text: "Vuelve pronto",
       });
+    },
+  },
+  watch: {
+    $route(to) {
+      this.showSidebar = to.path !== "/login";
     },
   },
 };
