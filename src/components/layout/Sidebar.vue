@@ -55,7 +55,7 @@
 </template>
 
 <script>
-import store from "@/store";
+import userStore from "@/stores/userStore";
 
 export default {
   name: "SidebarComponent",
@@ -78,7 +78,7 @@ export default {
       });
     },
     confirmLogout() {
-      store.dispatch("logout");
+      userStore.dispatch("logout");
       this.$vs.notify({
         color: this.colorAlert,
         title: "Sesión cerrada con exito",

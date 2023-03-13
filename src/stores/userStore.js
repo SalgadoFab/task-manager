@@ -5,7 +5,7 @@ import router from '../router/index'
 
 Vue.use(Vuex)
 
-const store = new Vuex.Store({
+const userStore = new Vuex.Store({
   // Estados
   state: {
     currentUser: {},
@@ -54,4 +54,4 @@ const store = new Vuex.Store({
   }
 })
 
-export default store
+export default userStore

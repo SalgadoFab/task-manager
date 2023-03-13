@@ -111,7 +111,7 @@
 </template>
   
 <script>
-import store from "@/store";
+import userStore from "@/stores/userStore";
 
 export default {
   name: "Loginpage",
@@ -124,7 +124,7 @@ export default {
   },
   methods: {
     signup() {
-      store.dispatch("signup", {
+      userStore.dispatch("signup", {
         email: this.signupForm.email,
         password: this.signupForm.password,
         name: this.signupForm.name,
@@ -132,7 +132,7 @@ export default {
       });
     },
     signin() {
-      store.dispatch("signin", {
+      userStore.dispatch("signin", {
         email: this.signinForm.email,
         password: this.signinForm.password
       });

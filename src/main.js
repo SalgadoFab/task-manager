@@ -1,7 +1,7 @@
 import Vue from 'vue';
 import Vuesax from 'vuesax';
 import router from './router';
-import store from './store'; 
+import userStore from './stores/userStore'; 
 import App from './App.vue';
 import { auth } from './firebase'
 
@@ -18,12 +18,12 @@ auth.onAuthStateChanged(user => {
   if (!app) {
     app = new Vue({
       router,
-      store,
+      userStore,
       render: h => h(App)
     }).$mount('#app')
   }
   console.log(user)
   if (user) {
-    store.dispatch('fetchCurrentUser', user)
+    userStore.dispatch('fetchCurrentUser', user)
   }
 })
