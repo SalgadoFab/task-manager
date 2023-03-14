@@ -23,6 +23,7 @@ auth.onAuthStateChanged(user => {
     }).$mount('#app')
   }
   if (user) {
+    console.log(user);
     userStore.commit('setLoading', false);
     userStore.commit('setSuccess', true);
     userStore.dispatch('fetchCurrentUser', user)
