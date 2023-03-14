@@ -15,7 +15,7 @@ const userStore = new Vuex.Store({
   },
   // Mutaciones
   mutations: {
-    //Instancia el estado del usuario logeado
+    //Mutaciones para los estados
     setCurrentUser(state, user) {
       state.currentUser = user
     },
@@ -51,12 +51,12 @@ const userStore = new Vuex.Store({
           id: form.id,
           name: form.name
         })
+        commit('setLoading', false)
         commit('setSuccess', true)
         dispatch('fetchCurrentUser', user)
       } catch (error) {
-        commit('setError', error.message)
-      } finally {
         commit('setLoading', false)
+        commit('setError', error)
       }
     },
     async signin({ dispatch }, form) {

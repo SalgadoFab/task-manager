@@ -98,9 +98,9 @@
             v-model="signinForm.password"
           />
         </div>
-        <vs-button 
-          color="primary" 
-          type="gradient" 
+        <vs-button
+          color="primary"
+          type="gradient"
           icon="login"
           @click="signin()"
           >Iniciar sesion
@@ -122,7 +122,25 @@ export default {
       signUp: false,
     };
   },
+  //Define propiedades computadas del componente
+  computed: {
+    successStatus() {
+      return userStore.getters.successStatus;
+    },
+    loadingStatus() {
+      return userStore.getters.loadingStatus;
+    },
+    errorMessage() {
+      return userStore.getters.errorStatus;
+    },
+  },
   methods: {
+    openLoading(){
+      this.$vs.loading()
+    },
+    closeLoading() {
+      this.$vs.loading.close()
+    },
     signup() {
       userStore.dispatch("signup", {
         email: this.signupForm.email,
@@ -134,9 +152,19 @@ export default {
     signin() {
       userStore.dispatch("signin", {
         email: this.signinForm.email,
-        password: this.signinForm.password
+        password: this.signinForm.password,
       });
     },
   },
+  watch: {
+    loadingStatus(val) {
+      console.log(val)
+      if (val) {
+        this.openLoading()
+      } else {
+        this.closeLoading()
+      }
+    }
+  }
 };
 </script>
