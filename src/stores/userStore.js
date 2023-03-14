@@ -10,7 +10,7 @@ const userStore = new Vuex.Store({
   state: {
     currentUser: {},
     loading: false,
-    success: false,
+    success: null,
     error: null,
   },
   // Mutaciones
@@ -42,9 +42,9 @@ const userStore = new Vuex.Store({
       }
     },
     async signup({ commit, dispatch }, form) {
+      commit('setSuccess', null)
       commit('setLoading', true)
       commit('setError', null)
-      commit('setSuccess', false)
       try {
         const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
         await fb.usersCollection.doc(user.uid).set({
@@ -57,12 +57,24 @@ const userStore = new Vuex.Store({
       } catch (error) {
         commit('setLoading', false)
         commit('setError', error)
+        commit('setSuccess', false)
       }
     },
-    async signin({ dispatch }, form) {
-      // obtiene la info del usuario logeado para crear su estado
-      const { user } = await fb.auth.signInWithEmailAndPassword(form.email, form.password)
-      dispatch('fetchCurrentUser', user)
+    async signin({ commit, dispatch }, form) {
+      commit('setSuccess', null);
+      commit('setLoading', true);
+      commit('setError', null);
+      try {
+        // obtiene la info del usuario logeado para crear su estado
+        const { user } = await fb.auth.signInWithEmailAndPassword(form.email, form.password)
+        commit('setLoading', false)
+        commit('setSuccess', true)
+        dispatch('fetchCurrentUser', user)
+      } catch (error) {
+        commit('setLoading', false)
+        commit('setError', error)
+        commit('setSuccess', false)
+      }
     },
     async logout({ commit }) {
       // Realiza el logout, limpia el estado del usuarioy redirecciona al login

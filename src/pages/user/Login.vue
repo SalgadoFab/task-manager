@@ -173,7 +173,6 @@ export default {
       }
     },
     successStatus(val) {
-      console.log('success', val)
       if (val === false){
         this.showError()
       }
