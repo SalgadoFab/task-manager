@@ -135,12 +135,6 @@ export default {
     },
   },
   methods: {
-    openLoading(){
-      this.$vs.loading()
-    },
-    closeLoading() {
-      this.$vs.loading.close()
-    },
     signup() {
       userStore.dispatch("signup", {
         email: this.signupForm.email,
@@ -155,14 +149,33 @@ export default {
         password: this.signinForm.password,
       });
     },
+    openLoading(){
+      this.$vs.loading()
+    },
+    closeLoading() {
+      this.$vs.loading.close()
+    },
+    showError() {
+      this.$vs.dialog({
+        color: 'danger',
+        title: '¡Error!',
+        text: `Tenemos un problema: ${ this.errorMessage }`,
+        acceptText:'Ok'
+      });
+    },
   },
   watch: {
     loadingStatus(val) {
-      console.log(val)
       if (val) {
         this.openLoading()
       } else {
         this.closeLoading()
+      }
+    },
+    successStatus(val) {
+      console.log('success', val)
+      if (val === false){
+        this.showError()
       }
     }
   }
