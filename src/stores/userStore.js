@@ -9,12 +9,24 @@ const userStore = new Vuex.Store({
   // Estados
   state: {
     currentUser: {},
+    loading: false,
+    success: false,
+    error: null,
   },
   // Mutaciones
   mutations: {
     //Instancia el estado del usuario logeado
-    setCurrentUser(state, val) {
-      state.currentUser = val
+    setCurrentUser(state, user) {
+      state.currentUser = user
+    },
+    setLoading(state, loading) {
+      state.loading = loading
+    },
+    setError(state, error) {
+      state.error = error
+    },
+    setSuccess(state, success) {
+      state.success = success
     }
   },
   // Acciones de interracion con base de datos
@@ -29,16 +41,23 @@ const userStore = new Vuex.Store({
         router.push('/')
       }
     },
-    async signup({ dispatch }, form) {
-      // Creacion del usuario
-      const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
-      // Creacion del usuario como objecto del collection
-      await fb.usersCollection.doc(user.uid).set({
-        id: form.id,
-        name: form.name
-      })
-      // Inicio del flujo para logear el usuario
-      dispatch('fetchCurrentUser', user)
+    async signup({ commit, dispatch }, form) {
+      commit('setLoading', true)
+      commit('setError', null)
+      commit('setSuccess', false)
+      try {
+        const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
+        await fb.usersCollection.doc(user.uid).set({
+          id: form.id,
+          name: form.name
+        })
+        commit('setSuccess', true)
+        dispatch('fetchCurrentUser', user)
+      } catch (error) {
+        commit('setError', error.message)
+      } finally {
+        commit('setLoading', false)
+      }
     },
     async signin({ dispatch }, form) {
       // obtiene la info del usuario logeado para crear su estado
@@ -51,6 +70,11 @@ const userStore = new Vuex.Store({
       commit('setCurrentUser', {})
       router.push('/login')
     },
+  },
+  getters: {
+    loadingStatus: state => state.loading,
+    successStatus: state => state.success,
+    errorStatus: state => state.error
   }
 })
 
