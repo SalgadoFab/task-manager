@@ -79,6 +79,7 @@ export default {
       });
     },
     confirmLogout() {
+      localStorage.setItem('showWelcomeMessage', false)
       userStore.dispatch("logout");
       this.$vs.notify({
         color: this.colorAlert,
