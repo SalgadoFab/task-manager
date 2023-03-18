@@ -49,6 +49,7 @@
             >
               <vs-select
                 class="select-assignee"
+                autocomplete
                 label="Designado a"
                 v-model="task.assigneeId"
               >
@@ -89,6 +90,7 @@
 </template>
 
 <script>
+import userStore from "@/stores/userStore";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
@@ -105,29 +107,39 @@ export default {
         { text: "Alta prioridad", value: 2 },
         { text: "Urgente", value: 3 },
       ],
-      users: [
-        { name: "User 1", id: 0 },
-        { name: "User 2", id: 1 },
-        { name: "User 3", id: 2 },
-      ],
+      users: [],
       task: {
         name: "",
         category: "",
         assigneeId: "",
         description: "",
-        created: "",
         expiration: "",
         state: "",
       },
     };
   },
+  computed: {
+    successStatus() {
+      return userStore.getters.successStatus;
+    },
+    loadingStatus() {
+      return userStore.getters.loadingStatus;
+    },
+    errorMessage() {
+      return userStore.getters.errorStatus;
+    },
+  },
   methods: {
     disabledBeforeToday(date) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-
       return date < today;
     },
+  },
+  created() {
+    userStore.dispatch("getUsers").then(() => {
+      this.users = userStore.getters.users;
+    });
   },
 };
 </script>

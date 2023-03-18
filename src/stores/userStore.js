@@ -2,8 +2,14 @@ import Vue from 'vue'
 import Vuex from 'vuex'
 import * as fb from '../firebase'
 import router from '../router/index'
+import {format} from "date-fns";
 
 Vue.use(Vuex)
+
+const getCurrentDate =() => {
+  const currentDate = new Date();
+  return format(currentDate, "yyyy-MM-dd");
+}
 
 const userStore = new Vuex.Store({
   // Estados
@@ -53,7 +59,8 @@ const userStore = new Vuex.Store({
         const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
         await fb.usersCollection.doc(user.uid).set({
           id: form.id,
-          name: form.name
+          name: form.name,
+          created: getCurrentDate()
         })
         commit('setLoading', false)
         commit('setSuccess', true)
@@ -91,12 +98,15 @@ const userStore = new Vuex.Store({
       commit('setLoading', true);
       commit('setError', null);
       try {
-        const usersSnapshot = await fb.usersCollection.get()
+        console.log('test');
+        const usersSnapshot = await fb.usersCollection.orderBy('created', 'asc').get()
         const users = usersSnapshot.docs.map((doc) => ({
           id: doc.id,
           name: doc.data().name
         }))
         commit('setUsers', users)
+        commit('setLoading', false)
+        commit('setSuccess', true)
       } catch (error) {
         commit('setLoading', false)
         commit('setError', error)
@@ -107,7 +117,8 @@ const userStore = new Vuex.Store({
   getters: {
     loadingStatus: state => state.loading,
     successStatus: state => state.success,
-    errorStatus: state => state.error
+    errorStatus: state => state.error,
+    users: state => state.users
   }
 })
 
