@@ -1,0 +1,15 @@
+.create-task-container {
+    .create-task-form {
+        border-radius: 37px;
+        background: #f5f5f5;
+        box-shadow:  39px 39px 77px #d3d3d3,
+                     -39px -39px 77px #ffffff;
+        padding: 3rem 5rem 2rem;
+        margin: 3rem 8rem 0;
+        .wrapper-action {
+            display: flex;
+            align-items: center;
+            justify-content: flex-end;
+        }
+    }
+}
