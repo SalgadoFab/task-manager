@@ -13,6 +13,7 @@
     "material-icons": "^1.13.2",
     "vue": "^2.6.14",
     "vue-router": "^3.5.1",
+    "vue2-datepicker": "^3.11.1",
     "vuesax": "^3.12.2",
     "vuex": "^4.1.0"
   },
