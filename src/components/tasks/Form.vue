@@ -110,11 +110,10 @@ export default {
       users: [],
       task: {
         name: "",
-        category: "",
+        category: "0",
         assigneeId: "",
         description: "",
         expiration: "",
-        state: "",
       },
     };
   },
