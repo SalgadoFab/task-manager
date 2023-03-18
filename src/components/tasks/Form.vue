@@ -49,14 +49,15 @@
             >
               <vs-select
                 class="select-assignee"
+                autocomplete
                 label="Designado a"
                 v-model="task.assigneeId"
               >
                 <vs-select-item
                   icon-after="true"
                   :key="index"
-                  :value="item.value"
-                  :text="item.text"
+                  :value="item.id"
+                  :text="item.name"
                   v-for="(item, index) in users"
                 />
               </vs-select>
@@ -89,6 +90,7 @@
 </template>
 
 <script>
+import userStore from "@/stores/userStore";
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
@@ -105,29 +107,47 @@ export default {
         { text: "Alta prioridad", value: 2 },
         { text: "Urgente", value: 3 },
       ],
-      users: [
-        { text: "User 1", value: 0 },
-        { text: "User 2", value: 1 },
-        { text: "User 3", value: 2 },
-      ],
+      users: [],
       task: {
         name: "",
         category: "",
         assigneeId: "",
         description: "",
-        created: "",
         expiration: "",
         state: "",
       },
     };
   },
+  computed: {
+    successStatus() {
+      return userStore.getters.successStatus;
+    },
+    loadingStatus() {
+      return userStore.getters.loadingStatus;
+    },
+    errorMessage() {
+      return userStore.getters.errorStatus;
+    },
+  },
   methods: {
     disabledBeforeToday(date) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);
-
       return date < today;
     },
   },
+  created() {
+    userStore.dispatch("getUsers").then(() => {
+      this.users = userStore.getters.users;
+    });
+  },
+  watch: {
+    task: {
+      deep: true,
+      handler (newData) {
+        this.$emit("task-changed", newData)
+      }
+    }
+  }
 };
 </script>
