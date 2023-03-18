@@ -1,0 +1,20 @@
+.form-container {
+    .form-wrapper {
+        .inputs-wrapper {
+            margin-top: 2rem;
+        }
+        textarea {
+            height: 150px;
+            font-family: "Roboto", sans-serif;
+        }
+    }
+
+    .con-select,
+    .vs-con-input-label {
+        text-align: left;
+    }
+    .material-icons {
+        font-size: large;
+    }
+
+}

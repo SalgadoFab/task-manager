@@ -60,10 +60,10 @@ export default {
     }, 
   },
   created() {
-  // Comprobamos si la bandera ya ha sido establecida en localStorage
+  // Comprueba si la bandera ya ha sido establecida en localStorage
   const flag = localStorage.getItem('showWelcomeMessage')
   if (flag != 'false') {
-    // Si la bandera no ha sido establecida, mostramos el mensaje de bienvenida y establecemos la bandera en localStorage
+    // Si la bandera no ha sido establecida, muestra el mensaje de bienvenida y establecemos la bandera en localStorage
     this.showWelcomeMessage = false
     this.$nextTick(() => {
       this.wellcomeMessage()
