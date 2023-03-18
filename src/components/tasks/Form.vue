@@ -55,8 +55,8 @@
                 <vs-select-item
                   icon-after="true"
                   :key="index"
-                  :value="item.value"
-                  :text="item.text"
+                  :value="item.id"
+                  :text="item.name"
                   v-for="(item, index) in users"
                 />
               </vs-select>
@@ -106,9 +106,9 @@ export default {
         { text: "Urgente", value: 3 },
       ],
       users: [
-        { text: "User 1", value: 0 },
-        { text: "User 2", value: 1 },
-        { text: "User 3", value: 2 },
+        { name: "User 1", id: 0 },
+        { name: "User 2", id: 1 },
+        { name: "User 3", id: 2 },
       ],
       task: {
         name: "",

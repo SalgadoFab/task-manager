@@ -9,6 +9,7 @@ const userStore = new Vuex.Store({
   // Estados
   state: {
     currentUser: {},
+    users: [],
     loading: false,
     success: null,
     error: null,
@@ -18,6 +19,9 @@ const userStore = new Vuex.Store({
     //Mutaciones para los estados
     setCurrentUser(state, user) {
       state.currentUser = user
+    },
+    setUsers(state, users) {
+      state.users = users
     },
     setLoading(state, loading) {
       state.loading = loading
@@ -82,6 +86,23 @@ const userStore = new Vuex.Store({
       commit('setCurrentUser', {})
       router.push('/login')
     },
+    async getUsers({ commit }) {
+      commit('setSuccess', null);
+      commit('setLoading', true);
+      commit('setError', null);
+      try {
+        const usersSnapshot = await fb.usersCollection.get()
+        const users = usersSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          name: doc.data().name
+        }))
+        commit('setUsers', users)
+      } catch (error) {
+        commit('setLoading', false)
+        commit('setError', error)
+        commit('setSuccess', false)
+      }
+    }
   },
   getters: {
     loadingStatus: state => state.loading,
