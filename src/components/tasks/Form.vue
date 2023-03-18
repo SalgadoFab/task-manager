@@ -141,5 +141,13 @@ export default {
       this.users = userStore.getters.users;
     });
   },
+  watch: {
+    task: {
+      deep: true,
+      handler (newData) {
+        this.$emit("task-changed", newData)
+      }
+    }
+  }
 };
 </script>
