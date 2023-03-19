@@ -5,6 +5,7 @@
       <div>Completa la informacion necesaria para crear una nueva tarea</div>
       <FormComponent @task-changed="updateTaskData" ref="formComponent" />
       <div class="wrapper-action">
+        <vs-progress :height="progress" indeterminate color="success"></vs-progress>
         <vs-button
           color="success"
           type="gradient"
@@ -30,6 +31,7 @@ export default {
   data: () => ({
     colorx: "success",
     showWelcomeMessage: true,
+    progress: 0,
     task: {},
   }),
   computed: {
@@ -47,15 +49,6 @@ export default {
     updateTaskData(newData) {
       this.task = newData;
     },
-    alertOnSuccess() {
-      this.$vs.notify({
-        title: "Nueva tarea registrada",
-        text: this.task.name,
-        color: "success",
-        icon: "add_task",
-        position: "top-right",
-      });
-    },
     onSubmitTask() {
       taskStore.dispatch("createTask", {
         name: this.task.name,
@@ -65,12 +58,45 @@ export default {
         expiration: this.task.expiration,
       });
     },
+    alertOnSuccess() {
+      this.$vs.notify({
+        title: "Nueva tarea registrada",
+        text: this.task.name,
+        color: "success",
+        icon: "add_task",
+        position: "top-right",
+      });
+    },
+    alertOnFail() {
+      this.$vs.dialog({
+        color: 'danger',
+        title: '¡Error!',
+        text: `Tenemos un problema: ${ this.errorMessage }`,
+        acceptText:'Ok'
+      });
+    },
+    setLoading(){
+      this.progress = 6;
+    },
+    removeLoading() {
+      this.progress = 0;
+    },
   },
   watch: {
+    loadingStatus(val) {
+      if (val) {
+        this.setLoading()
+      } else {
+        this.removeLoading()
+      }
+    },
     successStatus(val) {
       if (val === true) {
         this.alertOnSuccess();
         this.$refs.formComponent.resetForm();
+      }
+      if (val === false) {
+        this.alertOnFail();
       }
     },
   },
