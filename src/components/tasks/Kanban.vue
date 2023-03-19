@@ -30,20 +30,16 @@
 import taskStore from "@/stores/taskStore";
 export default {
   name: "KanbanComponent",
+  props: {
+    tasks: {
+      type: Array,
+      required: true
+    }
+  },
   data() {
     return {
       stages: ["on-hold", "in-progress", "needs-review", "approved"],
-      blocks: [
-        {
-          id: 0,
-          status: "approved",
-          title: "Tarea 1",
-          description: "",
-          expiration: "",
-          category: "",
-          asigned: ""
-        },
-      ],
+      blocks: this.tasks,
     };
   },
   methods: {

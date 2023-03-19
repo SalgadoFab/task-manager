@@ -3,23 +3,33 @@
     <section class="user-tasks">
       <h1>Mis tareas</h1>
       <div class="board-wrapper">
-        <KanbanComponent/>
+        <KanbanComponent :tasks="tasks" />
       </div>
     </section>
   </div>
 </template>
     
 <script>
-//Componentes
 import KanbanComponent from "@/components/tasks/Kanban.vue";
-
 export default {
   name: "UserTaskViews",
   components: {
     KanbanComponent,
   },
   data() {
-    return {};
+    return {
+      tasks: [
+        {
+          id: 0,
+          status: "on-hold",
+          title: "Tarea 1",
+          description: "",
+          expiration: "",
+          category: "",
+          asigned: "",
+        },
+      ],
+    };
   },
 };
 </script>
