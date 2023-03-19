@@ -117,7 +117,8 @@ const userStore = new Vuex.Store({
     loadingStatus: state => state.loading,
     successStatus: state => state.success,
     errorStatus: state => state.error,
-    users: state => state.users
+    users: state => state.users,
+    user: state => state.currentUser
   }
 })
 
