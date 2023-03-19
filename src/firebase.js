@@ -1,6 +1,5 @@
 import firebase from 'firebase/compat/app';
 import 'firebase/compat/auth';
-import { getAuth } from 'firebase/auth'; 
 import 'firebase/compat/firestore';
 
 
@@ -19,11 +18,10 @@ firebase.initializeApp(firebaseConfig)
 
 const db = firebase.firestore()
 const auth = firebase.auth()
-const getCurrentUser = getAuth(); 
 
 const usersCollection = db.collection('users')
 const tasksCollection = db.collection('tasks')
 
-export { db, auth, getCurrentUser, usersCollection, tasksCollection}
+export { db, auth, usersCollection, tasksCollection}
 
 export default firebase

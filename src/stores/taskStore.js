@@ -58,11 +58,16 @@ const taskStore = new Vuex.Store({
         commit('setSuccess', false)
       }
     },
+    async updateTask({commit}, task) {
+      await fb.tasksCollection.doc(task.id).update({
+        status: task.status,
+      })
+    },
     async getTasksByUser({ commit }) {
       commit('setSuccess', null);
       commit('setLoading', true);
       commit('setError', null);
-      const userId = fb.getCurrentUser.currentUser.uid;
+      const userId = fb.auth.currentUser.uid
       try {
         const tasksSnapshot = await fb.tasksCollection
           .where('assigneeId', '==', userId)

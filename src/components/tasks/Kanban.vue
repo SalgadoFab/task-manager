@@ -43,7 +43,12 @@ export default {
     };
   },
   methods: {
-    updateTask(id, status) {},
+    updateTask(id, status) {
+      taskStore.dispatch("updateTask", {
+        id,
+        status
+      });
+    },
   },
 };
 </script>
