@@ -65,6 +65,7 @@ export default {
         color: "success",
         icon: "add_task",
         position: "top-right",
+        time: 4000
       });
     },
     alertOnFail() {
