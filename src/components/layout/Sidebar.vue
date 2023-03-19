@@ -25,11 +25,14 @@
       </vs-divider>
 
       <vs-sidebar-group open title="Tareas">
-        <vs-sidebar-item to="/tasks" index="2" icon="list">
-          Listar
+        <vs-sidebar-item to="/tasks/create" index="2" icon="add_task">
+          Crear nueva
         </vs-sidebar-item>
-        <vs-sidebar-item to="/tasks/create" index="3" icon="add_task">
-          Crear
+        <vs-sidebar-item to="/tasks" index="3" icon="list">
+          Mis Tareas
+        </vs-sidebar-item>
+        <vs-sidebar-item to="/all-tasks" index="4" icon="list">
+          Todas las tareas
         </vs-sidebar-item>
       </vs-sidebar-group>
 
@@ -37,7 +40,7 @@
         User
       </vs-divider>
 
-      <vs-sidebar-item to="/notifications" index="4" icon="account_box">
+      <vs-sidebar-item to="/notifications" index="5" icon="account_box">
         Notificaciones
       </vs-sidebar-item>
 
