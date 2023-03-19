@@ -24,6 +24,7 @@ const userStore = new Vuex.Store({
   mutations: {
     //Mutaciones para los estados
     setCurrentUser(state, user) {
+      console.log(user)
       state.currentUser = user
     },
     setUsers(state, users) {
@@ -117,7 +118,8 @@ const userStore = new Vuex.Store({
     loadingStatus: state => state.loading,
     successStatus: state => state.success,
     errorStatus: state => state.error,
-    users: state => state.users
+    users: state => state.users,
+    user: state => state.currentUser
   }
 })
 

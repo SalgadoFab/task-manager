@@ -3,14 +3,16 @@
     <section class="user-tasks">
       <h1>Mis tareas</h1>
       <div class="board-wrapper">
-        <KanbanComponent :tasks="tasks" />
+        <KanbanComponent :tasks="getUserTasks" :key="kanbanKey" />
       </div>
     </section>
   </div>
 </template>
-    
+
 <script>
+import taskStore from "@/stores/taskStore";
 import KanbanComponent from "@/components/tasks/Kanban.vue";
+
 export default {
   name: "UserTaskViews",
   components: {
@@ -18,19 +20,21 @@ export default {
   },
   data() {
     return {
-      tasks: [
-        {
-          id: 0,
-          status: "on-hold",
-          title: "Tarea 1",
-          description: "",
-          expiration: "",
-          category: "",
-          asigned: "",
-        },
-      ],
+      kanbanKey: 0,
     };
+  },
+  computed: {
+    getUserTasks() {
+      return taskStore.getters.tasks;
+    },
+  },
+  watch: {
+    getUserTasks() {
+      this.kanbanKey++;
+    },
+  },
+  created() {
+    taskStore.dispatch("getTasksByUser");
   },
 };
 </script>
-  

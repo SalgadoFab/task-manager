@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import Vuex from 'vuex'
 import * as fb from '../firebase'
-import router from '../router/index'
 import { format } from "date-fns";
 
 Vue.use(Vuex)
@@ -57,6 +56,29 @@ const taskStore = new Vuex.Store({
         commit('setLoading', false)
         commit('setError', error)
         commit('setSuccess', false)
+      }
+    },
+    async getTasksByUser({ commit }) {
+      commit('setSuccess', null);
+      commit('setLoading', true);
+      commit('setError', null);
+      const userId = fb.getCurrentUser.currentUser.uid;
+      try {
+        const tasksSnapshot = await fb.tasksCollection
+          .where('assigneeId', '==', userId)
+          .orderBy('created', 'asc')
+          .get();
+        const tasks = tasksSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        commit('setTasks', tasks);
+        commit('setLoading', false);
+        commit('setSuccess', true);
+      } catch (error) {
+        commit('setLoading', false);
+        commit('setError', error);
+        commit('setSuccess', false);
       }
     }
   },
