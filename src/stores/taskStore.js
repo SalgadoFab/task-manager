@@ -37,7 +37,7 @@ const taskStore = new Vuex.Store({
   },
   // Acciones de interracion con base de datos
   actions: {
-    async createTask ({commit}, task) {
+    async createTask({ commit }, task) {
       commit('setSuccess', null)
       commit('setLoading', true)
       commit('setError', null)
