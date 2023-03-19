@@ -1,7 +1,7 @@
 <template>
   <section class="form-container">
     <div class="form-wrapper">
-      <form class="sign-in" action="#">
+      <form class="form-tasks" action="#" ref="form">
         <div class="inputs-wrapper">
           <vs-row vs-type="flex">
             <vs-col
@@ -110,11 +110,10 @@ export default {
       users: [],
       task: {
         name: "",
-        category: "",
+        category: "0",
         assigneeId: "",
         description: "",
         expiration: "",
-        state: "",
       },
     };
   },
@@ -130,6 +129,9 @@ export default {
     },
   },
   methods: {
+    resetForm() {
+      this.$refs.form.reset();
+    },
     disabledBeforeToday(date) {
       const today = new Date();
       today.setHours(0, 0, 0, 0);

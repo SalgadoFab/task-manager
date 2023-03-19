@@ -37,7 +37,28 @@ const taskStore = new Vuex.Store({
   },
   // Acciones de interracion con base de datos
   actions: {
-
+    async createTask({ commit }, task) {
+      commit('setSuccess', null)
+      commit('setLoading', true)
+      commit('setError', null)
+      try {
+        await fb.tasksCollection.add({
+          name: task.name,
+          description: task.description,
+          category: task.category,
+          assigneeId: task.assigneeId,
+          expiration: task.expiration,
+          created: getCurrentDate(),
+          status: "on-hold"
+        })
+        commit('setLoading', false)
+        commit('setSuccess', true)
+      } catch (error) {
+        commit('setLoading', false)
+        commit('setError', error)
+        commit('setSuccess', false)
+      }
+    }
   },
   getters: {
     loadingStatus: state => state.loading,

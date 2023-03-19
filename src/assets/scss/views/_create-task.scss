@@ -8,8 +8,11 @@
         margin: 3rem 8rem 0;
         .wrapper-action {
             display: flex;
-            align-items: center;
-            justify-content: flex-end;
+            justify-content: space-evenly;
+            flex-direction: column;
+            width: max-content;
+            align-items: flex-end;
+            margin-left: auto;
         }
     }
 }

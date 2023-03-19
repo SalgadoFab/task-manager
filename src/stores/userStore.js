@@ -98,7 +98,6 @@ const userStore = new Vuex.Store({
       commit('setLoading', true);
       commit('setError', null);
       try {
-        console.log('test');
         const usersSnapshot = await fb.usersCollection.orderBy('created', 'asc').get()
         const users = usersSnapshot.docs.map((doc) => ({
           id: doc.id,
