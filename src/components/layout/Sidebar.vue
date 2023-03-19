@@ -25,14 +25,14 @@
       </vs-divider>
 
       <vs-sidebar-group open title="Tareas">
-        <vs-sidebar-item to="/tasks/create" index="2" icon="add_task">
-          Crear nueva
-        </vs-sidebar-item>
         <vs-sidebar-item to="/tasks" index="3" icon="list">
           Mis Tareas
         </vs-sidebar-item>
         <vs-sidebar-item to="/all-tasks" index="4" icon="list">
           Todas las tareas
+        </vs-sidebar-item>
+        <vs-sidebar-item to="/tasks/create" index="2" icon="add_task">
+          Crear nueva
         </vs-sidebar-item>
       </vs-sidebar-group>
 

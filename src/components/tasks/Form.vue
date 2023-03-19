@@ -90,7 +90,10 @@
 </template>
 
 <script>
+//Stores
 import userStore from "@/stores/userStore";
+
+//
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
