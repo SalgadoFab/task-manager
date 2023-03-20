@@ -45,7 +45,7 @@ const userStore = new Vuex.Store({
       // Obtiene la data del usuario logeado
       const currentUser = await fb.usersCollection.doc(user.uid).get()
       // Instancia el estado del logeado
-      commit('setCurrentUser', currentUser.data())
+      commit('setCurrentUser', {uid: user.uid, ...currentUser.data()})
       // Cambia la ruta al home del app
       if (router.currentRoute.path === '/login') {
         router.push('/')
@@ -58,8 +58,8 @@ const userStore = new Vuex.Store({
       try {
         const { user } = await fb.auth.createUserWithEmailAndPassword(form.email, form.password)
         await fb.usersCollection.doc(user.uid).set({
-          id: form.id,
           name: form.name,
+          rol: "user",
           created: getCurrentDate()
         })
         commit('setLoading', false)

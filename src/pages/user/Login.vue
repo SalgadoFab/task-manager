@@ -50,13 +50,6 @@
           />
           <vs-input
             icon-after="true"
-            label-placeholder="Identificacion"
-            icon="badge"
-            placeholder="Identificacion"
-            v-model="signupForm.id"
-          />
-          <vs-input
-            icon-after="true"
             label-placeholder="Email"
             icon="email"
             placeholder="Email"
@@ -118,7 +111,7 @@ export default {
   data: () => {
     return {
       signinForm: { email: "", password: "" },
-      signupForm: { name: "", id: "", email: "", password: "" },
+      signupForm: { name: "", email: "", password: "" },
       signUp: false,
     };
   },
@@ -140,7 +133,6 @@ export default {
         email: this.signupForm.email,
         password: this.signupForm.password,
         name: this.signupForm.name,
-        id: this.signupForm.id,
       });
     },
     signin() {

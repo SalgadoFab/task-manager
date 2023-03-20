@@ -10,11 +10,11 @@
             <div class="show-more">Ver detalle</div>
           </div>
           <div class="body-task">
-            {{ block.title }}
+            {{ block.name }}
           </div>
           <div class="footer-task">
             <div class="category">
-              
+              {{ getCategory(block.category) }}
             </div>
             <div class="asigned">
 
@@ -33,8 +33,8 @@ export default {
   props: {
     tasks: {
       type: Array,
-      required: true
-    }
+      required: true,
+    },
   },
   data() {
     return {
@@ -46,8 +46,17 @@ export default {
     updateTask(id, status) {
       taskStore.dispatch("updateTask", {
         id,
-        status
+        status,
       });
+    },
+    getCategory(id) {
+      const cats = {
+        0: "Baja prioridad",
+        1: "Normal",
+        2: "Alta prioridad",
+        3: "Urgente"
+      };
+      return cats[id] || "";
     },
   },
 };
