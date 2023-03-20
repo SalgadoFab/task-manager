@@ -50,8 +50,10 @@
               <vs-select
                 class="select-assignee"
                 autocomplete
+                :input-changed="setSelectedName()"
                 label="Designado a"
-                v-model="task.assigneeId"
+                v-model="selectedUser"
+                ref="test"
               >
                 <vs-select-item
                   icon-after="true"
@@ -90,10 +92,7 @@
 </template>
 
 <script>
-//Stores
 import userStore from "@/stores/userStore";
-
-//
 import DatePicker from "vue2-datepicker";
 import "vue2-datepicker/index.css";
 
@@ -114,26 +113,24 @@ export default {
       task: {
         name: "",
         category: "0",
-        assigneeId: "",
         description: "",
         expiration: "",
+        assigneeId: "",
+        assigneeName: "",
       },
+      selectedUser: null,
     };
-  },
-  computed: {
-    successStatus() {
-      return userStore.getters.successStatus;
-    },
-    loadingStatus() {
-      return userStore.getters.loadingStatus;
-    },
-    errorMessage() {
-      return userStore.getters.errorStatus;
-    },
   },
   methods: {
     resetForm() {
       this.$refs.form.reset();
+    },
+    setSelectedName() {
+      const selectedUser = this.users.find((user) => user.id === this.selectedUser);
+      if (selectedUser) {
+        this.task.assigneeId = selectedUser.id;
+        this.task.assigneeName = selectedUser.name;
+      }
     },
     disabledBeforeToday(date) {
       const today = new Date();

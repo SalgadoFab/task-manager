@@ -45,9 +45,10 @@ const taskStore = new Vuex.Store({
           name: task.name,
           description: task.description,
           category: task.category,
-          assigneeId: task.assigneeId,
           expiration: task.expiration,
           created: getCurrentDate(),
+          assigneeId: task.assigneeId,
+          assigneeName: task.assigneeName,
           status: "on-hold"
         })
         commit('setLoading', false)

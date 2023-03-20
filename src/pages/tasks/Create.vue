@@ -54,8 +54,9 @@ export default {
         name: this.task.name,
         description: this.task.description,
         category: this.task.category,
-        assigneeId: this.task.assigneeId,
         expiration: this.task.expiration,
+        assigneeId: this.task.assigneeId,
+        assigneeName: this.task.assigneeName,
       });
     },
     alertOnSuccess() {
