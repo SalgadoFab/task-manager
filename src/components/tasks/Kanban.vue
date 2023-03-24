@@ -5,20 +5,29 @@
         <div class="block-wrapper">
           <div class="head-task">
             <div class="expiration">
-              {{ block.expiration }}
+              <span class="material-icons"> today </span>
+              {{ getSmallData(block.expiration) }}
             </div>
-            <div class="show-more">Ver detalle</div>
+            <div class="show-more">
+              <a>
+                <span class="material-icons"> open_in_full </span>
+              </a>
+            </div>
           </div>
           <div class="body-task">
-            {{ block.name }}
+            <p>
+              {{ block.name }}
+            </p>
           </div>
           <div class="footer-task">
-            <div class="category">
+            <div class="category" :style="getClassCategory(block.category)">
               {{ getCategory(block.category) }}
             </div>
-            <div class="asigned">
-
-            </div>
+            <vs-tooltip :text=block.assigneeName position="right">
+              <div class="asigned">
+                {{ getSmallName(block.assigneeName) }}
+              </div>
+            </vs-tooltip>
           </div>
         </div>
       </div>
@@ -54,9 +63,48 @@ export default {
         0: "Baja prioridad",
         1: "Normal",
         2: "Alta prioridad",
-        3: "Urgente"
+        3: "Urgente",
       };
       return cats[id] || "";
+    },
+    getClassCategory(id) {
+      console.log(id)
+      const colors = {
+        0: "#1f74ff",
+        1: "#46c93a",
+        2: "#ffba00",
+        3: "#ff4757",
+      };
+      return `background: ${colors[id]};` || "";
+    },
+    getSmallData(date) {
+      const dateObj = new Date(date);
+      const monthNames = [
+        "Enero",
+        "Febrero",
+        "Marzo",
+        "Abril",
+        "Mayo",
+        "Junio",
+        "Julio",
+        "Agosto",
+        "Septiembre",
+        "Octubre",
+        "Noviembre",
+        "Diciembre",
+      ];
+      const monthIndex = dateObj.getUTCMonth();
+      const day = dateObj.getUTCDate();
+      const monthName = monthNames[monthIndex];
+      return `${monthName} ${day}`;
+    },
+    getSmallName(name) {
+      const words = name.split(" ");
+      let initials = "";
+      for (let i = 0; i < words.length; i++) {
+        initials += words[i].charAt(0).toUpperCase();
+      }
+      return initials;
     },
   },
 };
