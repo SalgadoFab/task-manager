@@ -163,7 +163,7 @@ ul {
 
 .drag-item {
     margin: 10px;
-    height: 200px;
+    height: 13rem;
     transition: $ease-out;
     cursor: grab;
 
@@ -216,11 +216,12 @@ ul {
         .body-task {
             display: flex;
             width: 100%;
-            padding: 1.5rem 0 1.5rem;
-            font-size: 1.2rem;
-
+            padding: 1.5rem 0.3rem 1.5rem;
+            font-size: 1rem;
+            
             p {
                 height: 3rem;
+                text-align: left;
             }
         }
 
@@ -228,7 +229,7 @@ ul {
             display: flex;
             justify-content: space-between;
             width: 100%;
-            font-size: 1rem;
+            font-size: 0.9rem;
 
             .category {
                 color: #fff;
