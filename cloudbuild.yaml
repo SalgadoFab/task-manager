@@ -10,7 +10,7 @@ steps:
   args: ['run', 'build']
   dir: 'task-manager'
 - name: 'gcr.io/cloud-builders/gsutil'
-  args: ['-m', 'rsync', '-r', '-c', '-d', './task-manager/dist', 'gs://my-vuejs-bucket']
+  args: ['-m', 'rsync', '-r', '-c', '-d', './task-manager/dist', 'gs://task-manager-bucket']
 timeout: 1800s
 options:
   logging: CLOUD_LOGGING_ONLY
