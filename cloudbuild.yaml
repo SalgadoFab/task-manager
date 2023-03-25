@@ -3,7 +3,7 @@ steps:
   args: ['clone', '--depth', '1', 'https://github.com/SalgadoFab/task-manager.git']
 - name: 'node:16'
   entrypoint: 'npm'
-  args: ['install']
+  args: ['install --legacy-peer-deps']
   dir: 'task-manager'
 - name: 'node:16'
   entrypoint: 'npm'
