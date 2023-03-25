@@ -7,7 +7,7 @@ steps:
   dir: 'task-manager'
 - name: 'node:14'
   entrypoint: 'npm'
-  args: ['run',  'build']
+  args: ['run', 'build']
   dir: 'task-manager'
 - name: 'gcr.io/cloud-builders/gsutil'
   args: ['-m', 'rsync', '-r', '-c', '-d', './task-manager/dist', 'gs://task-manager-bucket']
