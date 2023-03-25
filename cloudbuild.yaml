@@ -1,11 +1,11 @@
 steps:
 - name: 'gcr.io/cloud-builders/git'
   args: ['clone', '--depth', '1', 'https://github.com/SalgadoFab/task-manager.git']
-- name: 'node:14'
+- name: 'node:16'
   entrypoint: 'npm'
   args: ['install']
   dir: 'task-manager'
-- name: 'node:14'
+- name: 'node:16'
   entrypoint: 'npm'
   args: ['run', 'build']
   dir: 'task-manager'
