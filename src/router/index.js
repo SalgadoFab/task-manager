@@ -20,13 +20,7 @@ const routes = [
   {
     path: '/tasks',
     name: 'Tasks',
-    component: () => import('../pages/tasks/UserTasks.vue'),
-    meta: { requiresAuth: true }
-  },
-  {
-    path: '/all-tasks',
-    name: 'Tasks',
-    component: () => import('../pages/tasks/AllTasks.vue'),
+    component: () => import('../pages/tasks/Index.vue'),
     meta: { requiresAuth: true }
   },
   {

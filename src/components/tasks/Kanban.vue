@@ -68,7 +68,6 @@ export default {
       return cats[id] || "";
     },
     getClassCategory(id) {
-      console.log(id)
       const colors = {
         0: "#1f74ff",
         1: "#46c93a",
