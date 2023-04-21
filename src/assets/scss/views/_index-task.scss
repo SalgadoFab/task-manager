@@ -1,0 +1,14 @@
+.change-view {
+    padding: 1.5rem 2rem;
+    display: flex;
+    justify-content: flex-end;
+    text-align: right !important;
+    ul {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+    }
+    .con-vs-radio {
+        justify-content: flex-start !important;
+    }
+}

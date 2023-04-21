@@ -24,11 +24,10 @@
           VueJS 2, Google Cloud Platform y Firebase
         </h2>
         <p class="text">
-          La aplicación permite a los usuarios crear, editar, eliminar y asignar
-          tareas ademas de establecer fechas límite para su finalización. 
-          La aplicación muestra notificaciones al usuario cuando se acerque la
-          fecha límite de una tarea y también permite a los usuarios ver un
-          historial de las tareas completadas, en progreso y por hacer.
+          La aplicación permite a los usuarios crear y asignar
+          tareas estableciendo fechas límite para su finalización. 
+          La aplicación implementa una visualizacion Kanban con 4 estados base
+          para el manejo de cada tarea
         </p>
       </div>
     </div>

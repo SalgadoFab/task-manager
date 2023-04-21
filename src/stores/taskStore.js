@@ -86,6 +86,27 @@ const taskStore = new Vuex.Store({
         commit('setError', error);
         commit('setSuccess', false);
       }
+    },
+    async getTasks({ commit }) {
+      commit('setSuccess', null);
+      commit('setLoading', true);
+      commit('setError', null);
+      try {
+        const tasksSnapshot = await fb.tasksCollection
+          .orderBy('created', 'asc')
+          .get();
+        const tasks = tasksSnapshot.docs.map((doc) => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
+        commit('setTasks', tasks);
+        commit('setLoading', false);
+        commit('setSuccess', true);
+      } catch (error) {
+        commit('setLoading', false);
+        commit('setError', error);
+        commit('setSuccess', false);
+      }
     }
   },
   getters: {

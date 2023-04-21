@@ -9,7 +9,7 @@
               {{ getSmallData(block.expiration) }}
             </div>
             <div class="show-more">
-              <a>
+              <a @click="showDescription(block.category, block.description)">
                 <span class="material-icons"> open_in_full </span>
               </a>
             </div>
@@ -23,7 +23,7 @@
             <div class="category" :style="getClassCategory(block.category)">
               {{ getCategory(block.category) }}
             </div>
-            <vs-tooltip :text=block.assigneeName position="right">
+            <vs-tooltip :text="block.assigneeName" position="right">
               <div class="asigned">
                 {{ getSmallName(block.assigneeName) }}
               </div>
@@ -49,6 +49,8 @@ export default {
     return {
       stages: ["on-hold", "in-progress", "needs-review", "approved"],
       blocks: this.tasks,
+      color: "primary",
+      title: "Descripcion de la tarea",
     };
   },
   methods: {
@@ -57,6 +59,15 @@ export default {
         id,
         status,
       });
+    },
+    getHex(id) {
+      const colors = {
+        0: "#1f74ff",
+        1: "#46c93a",
+        2: "#ffba00",
+        3: "#ff4757",
+      };
+      return colors[id];
     },
     getCategory(id) {
       const cats = {
@@ -68,13 +79,7 @@ export default {
       return cats[id] || "";
     },
     getClassCategory(id) {
-      const colors = {
-        0: "#1f74ff",
-        1: "#46c93a",
-        2: "#ffba00",
-        3: "#ff4757",
-      };
-      return `background: ${colors[id]};` || "";
+      return `background: ${this.getHex(id)};` || "";
     },
     getSmallData(date) {
       const dateObj = new Date(date);
@@ -104,6 +109,17 @@ export default {
         initials += words[i].charAt(0).toUpperCase();
       }
       return initials;
+    },
+    showDescription(idColor, description) {
+      const type = description ? "dialog" : "notify";
+      this.$vs[type]({
+        color: type === "dialog" ? this.getHex(idColor) : "danger",
+        title: this.title,
+        text: description || "Descripción no proporcionada",
+        acceptText:'Aceptar',
+        position: type === "notify" ? "top-right" : undefined,
+        icon: type === "notify" ? "error" : undefined,
+      });
     },
   },
 };
